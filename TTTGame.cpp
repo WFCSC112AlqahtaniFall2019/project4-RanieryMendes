@@ -11,8 +11,10 @@ using namespace std;
 int main() {
     // create object to operate the TicTacToe class
     TicTacToe game;
+
     //seed time to secure random numbers
     srand(time(0));
+
     // int to get from the user the number of players
     int numPlayers;
 
@@ -33,7 +35,7 @@ int main() {
             cout << "Number inserted is invalid. Please, either enter 1 to play alone or 2 to play with another person." << endl;
             cin >> numPlayers;
         }
-        //if input is valid evaluate intro to true and resume program
+        //if input is valid evaluate intro to true and end while loop
         else {
             intro = true;
         }
@@ -44,24 +46,6 @@ int main() {
         //initial instructions
         cout << "Game set for 2 players. Player 1 = X and Player 2 = O" << endl;
         cout << "Board's columns and rows ranges from 1 to 3." << endl;
-
-        // select random player to initiate the game
-        int playerSelection;
-        playerSelection = rand()% 2 + 1;
-
-        if (playerSelection == 1) {
-            // do nothing --> keep Player 1 as the current player
-        }
-
-
-        else{
-            //playerSelection = 2 --> switch the current player to Player 2
-            game.changePlayer();
-        }
-
-        //Inform the user who starts the game
-        cout << "Player " << playerSelection << " starts the game!" << endl;
-
 
         //initialize and print board.
         game.initializeBoard();
@@ -159,14 +143,29 @@ int main() {
     else {
         //initial instructions
         cout << "Game set for 1 player. Player 1 - X and Player 2 (Computer) - O" << endl;
-        cout << "Board's columns and rows ranges from 0 -2." << endl;
+        cout << "Board's columns and rows ranges from  1 - 3." << endl;
+
+        // select random player to initiate the game
+        int playerSelection;
+        playerSelection = rand()% 2 + 1;
+
+        if (playerSelection == 1) {
+            // do nothing --> keep Player 1 as the current player
+        }
+
+        else{
+            //playerSelection = 2 --> switch the current player to Player 2
+            game.changePlayer();
+        }
+
+        //Inform the user who starts the game
+        cout << endl << "Player " << playerSelection << " starts the game!" << endl;
 
         //initialize and print the board to the user
         game.initializeBoard();
         game.printBoard();
 
         //interaction with player(s) during the "match"
-
 
         /* while loop for playability while game is not over
           game is not over when there iss no winner and the board is not full */
@@ -182,7 +181,7 @@ int main() {
                 //check if the inputs (row and column) fit the board's range
                 // if not ask for new input until a valid one be entered
                 while (row > 3 || row <= 0 ||  column > 3 || column <= 0) {
-                    cout << "Please enter valid value for row and column. They range from 0 to 2." << endl;
+                    cout << "Please enter valid value for row and column. They range from 1 to 3." << endl;
                     cin >> row >> column;
                 }
 
